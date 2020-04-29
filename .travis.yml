@@ -52,14 +52,17 @@ jobs:
       env: TEST="all_tests"
       scala: *scala_213
     - env: TEST="docs"
-      script:
-        - sbt ++$TRAVIS_SCALA_VERSION docs/mdoc
-        - sbt ++$TRAVIS_SCALA_VERSION mimaReportBinaryIssues
-        - sbt ++$TRAVIS_SCALA_VERSION docs/makeMicrosite
+      script: sbt ++$TRAVIS_SCALA_VERSION docs/mdoc && sbt ++$TRAVIS_SCALA_VERSION docs/makeMicrosite
       scala: *scala_212
-    - stage: doc-deploy
-      scala: *scala_212
-      script:
-        - sbt ++$TRAVIS_SCALA_VERSION docs/publishMicrosite
+      deploy:
+        github-token: $GITHUB_TOKEN
+        keep-history: true
+        local-dir: ./website/build/site
+        provider: pages
+        skip_cleanup: true
+        target-branch: gh-pages
+        on:
+          branch: master
+    - stage: release
     - stage: release
       script: sbt "set organization in ThisBuild := \"${DEPLOY_ORG:-io.christopherdavenport}\"; ci-release"
