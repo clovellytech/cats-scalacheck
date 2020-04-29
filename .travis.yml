@@ -57,7 +57,7 @@ jobs:
       deploy:
         github-token: $GITHUB_TOKEN
         keep-history: true
-        local-dir: ./website/build/site
+        local-dir: ./cats-scalacheck-docs/target/site
         provider: pages
         skip_cleanup: true
         target-branch: gh-pages
