@@ -45,7 +45,7 @@ lazy val contributors = Seq(
 )
 
 lazy val commonSettings = Seq(
-  organization := "io.chrisdavenport",
+  organization in ThisBuild := "io.chrisdavenport",
 
   crossScalaVersions := Seq("2.12.11", "2.13.2"),
 

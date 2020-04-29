@@ -61,4 +61,4 @@ jobs:
         on:
           branch: master
     - stage: release
-      script: sbt "set organization in ThisBuild := \"${DEPLOY_ORG:-io.christopherdavenport}\"; ci-release"
+      script: sbt "set organization in ThisBuild := \"${DEPLOY_ORG:-io.chrisdavenport}\"; ci-release"
